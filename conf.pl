@@ -97,7 +97,7 @@ $HTTP_DEBUG = 1;
 # the -raw option to pdftotext.
 # [re-index]
 %EXT_FILTER = (
-	   "pdf" => "/usr/bin/pdftotext FILENAME -",
+	   "pdf" => "/usr/bin/pdftotext FILENAME -enc UTF-8 -",
 	   "doc" => "/usr/bin/antiword FILENAME"
 );
 
@@ -160,11 +160,9 @@ $DESC_WORDS = 25;
 # [re-index]
 $MINLENGTH = 3;
 
-# If you have umlauts or accents etc. in your text, enable this.
-# With this option accented characters will be indexed as the characters
-# they are based on (e.g. è -> e, ü -> u), without this option they will
-# be filtered out completely (you don't want that). [re-index]
-$SPECIAL_CHARACTERS = 1;
+# Since UTF-8 is used for searching and displaying results now the
+# SPECIAL_CHARACTERS value should always be ZERO!
+$SPECIAL_CHARACTERS = 0;
 
 # The largest acceptable word size. Reducing this saves space but decreases
 # result accuracy. Setting the variable to 0 ignores stemming alltogether.

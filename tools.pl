@@ -233,24 +233,29 @@ sub build_char_string {
 # Represent all special characters as the character they are based on.
 sub remove_accents {
   my $buffer = $_[0];
-  # Special cases:
-  $buffer =~ s/&thorn;/th/igs;
-  $buffer =~ s/&eth;/d/igs;
-  $buffer =~ s/&szlig;/ss/igs;
-  # Now represent special characters as the characters they are based on:
-  $buffer =~ s/&(..?)(grave|acute|circ|tilde|uml|ring|cedil|slash|lig);/$1/igs;
+
+  ### Leave characters alone as standard UTF-8
+  # # Special cases:
+  # $buffer =~ s/&thorn;/th/igs;
+  # $buffer =~ s/&eth;/d/igs;
+  # $buffer =~ s/&szlig;/ss/igs;
+  # # Now represent special characters as the characters they are based on:
+  # $buffer =~ s/&(..?)(grave|acute|circ|tilde|uml|ring|cedil|slash|lig);/$1/igs;
   return $buffer;
 }
 
 # Represent all special characters as HTML entities like &<entitiy>;
 sub normalize_special_chars {
   my $buffer = $_[0];
-  # There may be special characters that are not encoded, so encode them:
-  $buffer =~ s/([$special_chars])/"&#".ord($1).";"/gse;
-  # Special characters can be encoded using hex values:
-  $buffer =~ s/&#x([\dA-F]{2});/"&#".hex("0x".$1).";"/igse;
-  # Special characters may be encoded with numbers, undo that (use the if() to avoid warnings):
-  $buffer =~ s/&#(\d\d\d);/if( $1 >= 192 && $1 <= 255 ) { "&$entities{$1};"; }/gse;
+
+  ### Leave characters alone as standard UTF-8
+  # # There may be special characters that are not encoded, so encode them:
+  # $buffer =~ s/([$special_chars])/"&#".ord($1).";"/gse;
+  # # Special characters can be encoded using hex values:
+  # $buffer =~ s/&#x([\dA-F]{2});/"&#".hex("0x".$1).";"/igse;
+  # # Special characters may be encoded with numbers, undo that (use the if() to avoid warnings):
+  # $buffer =~ s/&#(\d\d\d);/if( $1 >= 192 && $1 <= 255 ) { "&$entities{$1};"; }/gse;
+
   return $buffer;
 }
 

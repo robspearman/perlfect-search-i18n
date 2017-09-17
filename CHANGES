@@ -1,3 +1,6 @@
+2017-9-17 (Rob Spearman <rob@digitaliseducation.com>)
+* Added UTF-8 support for indexing, searching, and result display.
+
 3.36 (Giorgos Zervas <giorgos@perlfect.com)
 * Added sponsored links
 

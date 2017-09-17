@@ -25,11 +25,16 @@
 #use Time::HiRes qw ();
 #my $start_time = [Time::HiRes::gettimeofday];
 
-use CGI;
+# Always output UTF-8 for browser!
+binmode STDOUT, ":utf8";
+
+use CGI qw/ -utf8 /;
 # only comment this in for development:
 #use CGI::Carp qw(fatalsToBrowser);
 use Fcntl;
 use POSIX qw(strftime);
+
+use Encode;
 
 # added program path to @INC because it fails to find ./conf.pl if started from
 # other directory
@@ -154,7 +159,8 @@ sub showdocument {
   } elsif( ! $HTTP_START_URL && isHTML($file) && $urls_db{$file} ) {
     $file = $DOCUMENT_ROOT.'/'.$file;    # TODO: make_path() function
     $file =~ s#/{2,}#/#g;
-    open(INP, $file) or (return "Error: could not open '".cleanup($url)."': $!\n");
+    
+    open(INP, "<:encoding(UTF-8)", $file) or (return "Error: could not open '".cleanup($url)."': $!\n");
     undef $/;
     $content = (<INP>);
     close(INP);
@@ -476,7 +482,7 @@ sub cast_template {
     } else {
       $score = sprintf("%.2f", $score/100);
     }
-    my $desc = get_summary($_, $q);
+    my $desc = decode_utf8( get_summary($_, $q) );
     my $visible_url;
     if( $HTTP_START_URL ) {
       # we've been fetching pages via http - no need to escape (again):
@@ -498,7 +504,7 @@ sub cast_template {
       $highlight_link = "(<a href=\"$SEARCH_URL?q=".my_uri_escape($q).
         "&amp;showurl=$show_url\">$HIGHLIGHT_TERMS{$lang}</a>)";
     }
-    my $title = get_title_highlight($titles_db{$_}, $q);
+    my $title = decode_utf8( get_title_highlight($titles_db{$_}, $q) );
     $template->cast_loop ("results", [{rank => $first+(++$rank), 
                        url => $url,
                        highlight_link => $highlight_link,
@@ -656,7 +662,7 @@ sub get_summary {
   }
   my $desc;
   if( $CONTEXT_SIZE ) {
-    $desc = get_context($content_db{$id}, @terms);
+    $desc = get_context( decode_utf8($content_db{$id}), @terms);
   }    
   if( ! defined($desc) ) {
     $desc = $desc_db{$id};
