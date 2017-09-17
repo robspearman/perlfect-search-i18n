@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <!-- the following meta tag is important to avoid cross site scripting attacks: -->
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <title>Pas de Résultat pour le terme: '<!--cgi: query_str-->'</title>
+</head>
+<body bgcolor="white" text="black" link="blue" alink="red" vlink="purple">
+
+<h2>Votre recherche du terme <font color="#999999"><strong>'<!--cgi: query_str-->'</strong></font> n'a donn&eacute; aucun résultat.</h2> 
+
+<!--cgi: ignored_terms-->
+    
+<p>Quelques conseils pour am&eacute;liorer le résultat de votre recherche:</p>
+<ul>
+	<li>Choisissez "Trouver au moins un mot".</li>
+	<li>Assurez-vous que votre orthographe soit correcte.</li>
+</ul>
+
+<form action="<!--cgi: search_url-->" method="get">
+	<input type="hidden" name="p" value="1" />
+	<input type="hidden" name="lang" value="<!--cgi: lang-->" />
+	<input type="hidden" name="include" value="<!--cgi: include-->" />
+	<input type="hidden" name="exclude" value="<!--cgi: exclude-->" />
+	<input type="hidden" name="penalty" value="<!--cgi: penalty-->" />
+	Nouvelle Recherche:
+	<select name="mode">
+		<option value="all"<!--cgi: match_all-->>Trouver tous les mots</option>
+		<option value="any"<!--cgi: match_any-->>Trouver au moins un mot</option>
+	</select>
+	<input type="text" name="q" value="<!--cgi: query_str-->" />
+	<input type="submit" value="Recherche" />
+</form>
+
+<script type="text/javascript" language="javascript1.1">
+<!--
+	if( document.forms[0].q ) {
+		document.forms[0].q.focus();
+		document.forms[0].q.select();
+	}
+// -->
+</script>
+
+<br />
+
+<div>
+                    <!-- Search Google -->
+                    <center>
+                        <form method="get" action="http://www.google.com/custom" target="_top">
+                            <table bgcolor="#ffffff">
+                                <tr><td nowrap="nowrap" valign="top" align="left" height="32">
+                                        <a href="http://www.google.com/">
+                                            <img src="http://www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+                                        <br/>
+                                        <label for="sbi" style="display: none">Enter your search terms</label>
+                                        <input type="text" name="q" size="20" maxlength="255" value="" id="sbi"></input>
+                                        <label for="sbb" style="display: none">Submit search form</label>
+                                        <input type="submit" name="sa" value="Search" id="sbb"></input>
+                            </td></tr></table>
+                        </form>
+                    </center>
+                    <!-- Search Google -->
+ <table border="0" cellpadding="2" cellspacing="0" bgcolor="#dddddd" width="100%">
+<tr>
+	<td align="right"><a href="http://perlfect.com/freescripts/search/">Perlfect Search 3.37 (c) Perlfect Solutions 1998-2007</a></td>
+</tr>
+</table>
+
+<br />
+
+</body>
+</html>
